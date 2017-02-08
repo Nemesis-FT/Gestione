@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/dashboard">Gestione</a>
+    </div>
+    {% if user %}
+      <ul class="nav navbar-nav">
+        <li class="{% if type is equalto "riassunti" %}active{% endif %}"><a href="/riassunti_list">Riassunti</a></li>
+        <li class="{% if type is equalto "consegne" %}active{% endif %}"><a href="/consegne_list">Consegne</a></li>
+        <li class="{% if type is equalto "utenti" %}active{% endif %}"><a href="/user_list">Utenti</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <p class="navbar-text">
+          {{user}}
+        </p>
+        <a href="/" class="btn btn-danger navbar-btn btn-right">Logout</a>
+      </ul>
+    {% else %}
+      <ul class="nav navbar-nav">
+        <li class="{% if type is equalto "ente" %}active{% endif %}"><a href="/riassunti_list">Riassunti</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <p class="navbar-text">
+            Accesso eseguito come ospite
+          </p>
+      <a href="/" class="btn btn-danger navbar-btn btn-right">Logout</a>
+    {% endif %}
+  </div>
+</nav>

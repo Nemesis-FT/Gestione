@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Aggiunta Riassunto - Gestione</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{css}}">
+  </head>
+  <body>
+    {% include 'nav.html.j2' %}
+    <div class="container">
+      <h1>
+         Aggiunta nuovo riassunto
+      </h1>
+      <form class="form-outline" action="/riassunti_add" method="post">
+        <input class="form-control" type="text" placeholder="Nome" name="rnome">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Materia" name="rmateria">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Descrizione" name="rdescrizione">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Link a Dropbox" name="rlink">
+        <p> </p>
+        <input class="form-control" type="submit">
+      </form>
+   </div>
+  </body>
+</html>

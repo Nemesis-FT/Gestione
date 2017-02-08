@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Dashboard - Gestione</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{css}}">
+  </head>
+  <body>
+    {% include 'nav.html.j2' %}
+    <div class="container">
+          <h2> Benvenuto nella dashboard della macchina virtuale di Balugani Lorenzo </h2>
+          <h3>  </h3>
+          <p> </p>
+          <h4> IP: 192.168.2.10; Versione di Gestione: 0.4 PR </h4>
+          <p> </p>
+      <div class="row">
+        <div class="col-sm-6">
+          <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/206007/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+        </div>
+        <div class="col-sm-6">
+          <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/206007/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+        </div>
+        <div class="col-sm-6">
+          <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/206007/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+        </div>
+        <div class="col-sm-6">
+          <img class="banner" src="{{banner}}">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
