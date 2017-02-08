@@ -69,9 +69,8 @@ def page_home():
     if 'username' not in session:
         return redirect(url_for('page_login'))
     else:
-        print ('username')
         session.pop('username')
-        return "Logout eseguito con successo."
+        return redirect(url_for('page_login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def page_login():
@@ -176,14 +175,14 @@ def page_riassunti_show(rid):
     if 'username' not in session:
         return redirect(url_for('page_dashboard'))
     if request.method == "GET":
-        users = User.query.get(uid)
+        riassunto = Riassunto.query.get(rid)
         css = url_for("static", filename="style.css")
-        return render_template("User/show.html.j2", css=css, users=users,type="riassunti", user=session["username"])
+        return render_template("Riassunti/show.html.j2", css=css, riassunto=riassunto,type="riassunti", user=session["username"])
     else:
         riassunto = Riassunto.query.get(rid)
-        Riassunto.rnome = request.form["nome"]
-        Riassunto.rmateria = request.form["materia"]
-        Riassunto.rdescrizione = request.form["desc"]
-        Riassunto.rlink = request.form["link"]
+        riassunto.rnome = request.form["rnome"]
+        riassunto.rmateria = request.form["rmateria"]
+        riassunto.rdescrizione = request.form["rdescrizione"]
+        riassunto.rlink = request.form["rlink"]
         db.session.commit()
-        return redirect(url_for('page_user_list'))
+        return redirect(url_for('page_riassunti_list'))

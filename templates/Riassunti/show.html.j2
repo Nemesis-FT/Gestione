@@ -8,15 +8,17 @@
     {% include 'nav.html.j2' %}
     <div class="container">
       <h1>
-         Modifica servizio
+         Modifica riassunto
       </h1>
-      <form class="form-inline" action="/serv_show/{{serv.sid}}" method="post">
-        <select class="form-control" name="eid" value="serv.eid">
-          {% for ente in enti %}
-            <option value="{{ente.eid}}" {% if serv.eid == ente.eid %}selected="selected"{% endif %}>{{ente.nomeente}}</option>
-          {% endfor %}
-        </select>
-        <input class="form-control" type="text" placeholder="Nome servizio" name="nomeservizio" value="{{serv.nomeservizio}}">
+      <form class="form-outline" action="/riassunti_show/{{riassunto.rid}}" method="post">
+        <input class="form-control" type="text" placeholder="Nome" name="rnome" value="{{riassunto.rnome}}">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Materia" name="rmateria" value="{{riassunto.rmateria}}">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Descrizione" name="rdescrizione" value="{{riassunto.rdescrizione}}">
+        <p> </p>
+        <input class="form-control" type="text" placeholder="Link a Dropbox" name="rlink" value="{{riassunto.rlink}}">
+        <p> </p>
         <input class="btn btn-primary" type="submit">
       </form>
    </div>
