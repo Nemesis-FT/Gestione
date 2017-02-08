@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Esamina consegna - Gestione</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{css}}">
+  </head>
+  <body>
+    {% include 'nav.html.j2' %}
+    <div class="container">
+      <h1>
+         Contenuto della consegna
+      </h1>
+      <h3> Questa funzione è ancora in prova, potrebbe ancora venir migliorata! </h3>
+      {{ consegna.cscript }}
+      <p> </p>
+      <a class="btn btn-success" href="/consegne_list">Torna alla lista</a>
+    </div>
+  </body>
+</html>

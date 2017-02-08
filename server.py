@@ -158,7 +158,7 @@ def page_riassunti_del(rid):
     riassunto = Riassunto.query.get(rid)
     db.session.delete(riassunto)
     db.session.commit()
-    return redirect(url_for('page_riassunto_list'))
+    return redirect(url_for('page_riassunti_list'))
 
 @app.route('/riassunti_list')
 def page_riassunti_list():
@@ -186,3 +186,58 @@ def page_riassunti_show(rid):
         riassunto.rlink = request.form["rlink"]
         db.session.commit()
         return redirect(url_for('page_riassunti_list'))
+
+@app.route('/consegne_add', methods=['GET', 'POST'])
+def page_consegne_add():
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    if request.method == 'GET':
+        css = url_for("static", filename="style.css")
+        return render_template("Consegne/add.html.j2", css=css, type="consegne", user=session["username"])
+    else:
+        nuovaconsegna= Consegne(request.form['cnome'], request.form['cdata'], request.form['clink'], request.form['cscript'])
+        db.session.add(nuovaconsegna)
+        db.session.commit()
+        return redirect(url_for('page_consegne_list'))
+
+@app.route('/consegne_del/<int:cid>')
+def page_consegne_del(cid):
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    consegna = Consegne.query.get(cid)
+    db.session.delete(consegna)
+    db.session.commit()
+    return redirect(url_for('page_consegne_list'))
+
+@app.route('/consegne_list')
+def page_consegne_list():
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    consegne = Consegne.query.all()
+    css = url_for("static", filename="style.css")
+    return render_template("Consegne/list.html.j2", css=css, consegne=consegne, type="consegne", user=session["username"])
+
+@app.route('/consegne_show/<int:cid>', methods=['GET', 'POST'])
+def page_consegne_show(cid):
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    if request.method == "GET":
+        consegna = Consegne.query.get(cid)
+        css = url_for("static", filename="style.css")
+        return render_template("Consegne/show.html.j2", css=css, consegna=consegna,type="consegne", user=session["username"])
+    else:
+        consegna = Consegne.query.get(cid)
+        consegna.cnome = request.form["cnome"]
+        consegna.rmateria = request.form["cdata"]
+        consegna.rdescrizione = request.form["clink"]
+        consegna.rlink = request.form["cscript"]
+        db.session.commit()
+        return redirect(url_for('page_consegne_list'))
+
+@app.route('/consegne_script_inspect/<int:cid>', methods=['GET', 'POST'])
+def page_consegne_script_inspect(cid):
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    consegna = Consegne.query.get(cid)
+    css = url_for("static", filename="style.css")
+    return render_template("Consegne/show_script.html.j2", css=css, consegna=consegna,type="consegne", user=session["username"])

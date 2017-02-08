@@ -6,6 +6,7 @@
     {% if user %}
       <ul class="nav navbar-nav">
         <li class="{% if type is equalto "riassunti" %}active{% endif %}"><a href="/riassunti_list">Riassunti</a></li>
+        <li class="{% if type is equalto "citazione" %}active{% endif %}"><a href="/citazioni_list">Citazioni</a></li>
         <li class="{% if type is equalto "consegne" %}active{% endif %}"><a href="/consegne_list">Consegne</a></li>
         <li class="{% if type is equalto "utenti" %}active{% endif %}"><a href="/user_list">Utenti</a></li>
       </ul>
@@ -18,6 +19,7 @@
     {% else %}
       <ul class="nav navbar-nav">
         <li class="{% if type is equalto "ente" %}active{% endif %}"><a href="/riassunti_list">Riassunti</a></li>
+        <li class="{% if type is equalto "citazione" %}active{% endif %}"><a href="/citazioni_list">Citazioni</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <p class="navbar-text">
