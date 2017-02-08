@@ -26,14 +26,14 @@ class Riassunto(db.Model):
     rdescrizione = db.Column(db.String(100))
     rlink = db.Column(db.String(100))
 
-def __init__(self, rnome, rmateria, rdescrizione, rlink):
-        self.rnome = rnome
-        self.rmateria = rmateria
-        self.rdescrizione = rdescrizione
-        self.rlink = rlink
+    def __init__(self, rnome, rmateria, rdescrizione, rlink):
+            self.rnome = rnome
+            self.rmateria = rmateria
+            self.rdescrizione = rdescrizione
+            self.rlink = rlink
 
-def __repr__(self):
-    return "<Riassunto {}>".format(self.rnome, self.rmateria)
+    def __repr__(self):
+        return "<Riassunto {}>".format(self.rnome, self.rmateria)
 
 class Consegne(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
@@ -42,14 +42,14 @@ class Consegne(db.Model):
     clink = db.Column(db.String(100))
     cscript = db.Column(db.String(1000))
 
-def __init__(self, cnome, cdata, clink, cscript):
-        self.cnome = cnome
-        self.cdata = cdata
-        self.clink = clink
-        self.cscript = cscript
+    def __init__(self, cnome, cdata, clink, cscript):
+            self.cnome = cnome
+            self.cdata = cdata
+            self.clink = clink
+            self.cscript = cscript
 
-def __repr__(self):
-    return "<Consegna {}>".format(self.cnome, self.cdata)
+    def __repr__(self):
+        return "<Consegna {}>".format(self.cnome, self.cdata)
 db.create_all()
 
 nuovouser = User('admin', 'admin')
