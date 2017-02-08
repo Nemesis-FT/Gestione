@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Aggiunta citazione - Gestione</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{css}}">
+  </head>
+  <body>
+    {% include 'nav.html.j2' %}
+    <div class="container">
+      <h1>
+         Aggiunta nuova citazione
+      </h1>
+      <form class="form-outline" action="/citazioni_add" method="post">
+        <input class="form-control" type="text" placeholder="Citazione" name="citcontenuto">
+        <input class="form-control" type="submit">
+      </form>
+   </div>
+  </body>
+</html>

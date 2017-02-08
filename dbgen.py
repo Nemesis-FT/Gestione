@@ -50,6 +50,17 @@ class Consegne(db.Model):
 
     def __repr__(self):
         return "<Consegna {}>".format(self.cnome, self.cdata)
+
+class Citazioni(db.Model):
+    citid = db.Column(db.Integer, primary_key=True)
+    citcontenuto = db.Column(db.String(100))
+
+    def __init__(self, citcontenuto):
+            self.citcontenuto = citcontenuto
+
+    def __repr__(self):
+        return "<Citazione {}>".format(self.citcontenuto)
+
 db.create_all()
 
 nuovouser = User('admin', 'admin')

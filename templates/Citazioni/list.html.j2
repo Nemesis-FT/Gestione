@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Citazioni - Gestione</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{css}}">
+  </head>
+  <body>
+    {% include 'nav.html.j2' %}
+    <div class="container">
+      <h1>
+         Citazioni
+      </h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Citazione</th>
+            <th>Elimina</th>
+          </tr>
+        </thead>
+        {% for citazione in citazioni %}
+          <tr>
+            <td>{{ citazione.citcontenuto }}</td>
+            <td><a href="/citazioni_del/{{ citazione.citid }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a class="btn btn-success" href="/citazioni_add">Aggiungi</a>
+    </div>
+  </body>
+</html>

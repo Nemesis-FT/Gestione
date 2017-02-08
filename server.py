@@ -51,6 +51,17 @@ class Consegne(db.Model):
 
     def __repr__(self):
         return "<Consegna {}>".format(self.cnome, self.cdata)
+
+class Citazioni(db.Model):
+    citid = db.Column(db.Integer, primary_key=True)
+    citcontenuto = db.Column(db.String(100))
+
+    def __init__(self, citcontenuto):
+            self.citcontenuto = citcontenuto
+
+    def __repr__(self):
+        return "<Citazione {}>".format(self.citcontenuto)
+
 db.create_all()
 
 
@@ -241,3 +252,35 @@ def page_consegne_script_inspect(cid):
     consegna = Consegne.query.get(cid)
     css = url_for("static", filename="style.css")
     return render_template("Consegne/show_script.html.j2", css=css, consegna=consegna,type="consegne", user=session["username"])
+
+@app.route('/citazioni_add', methods=['GET', 'POST'])
+def page_citazioni_add():
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    if request.method == 'GET':
+        css = url_for("static", filename="style.css")
+        return render_template("Citazioni/add.html.j2", css=css, type="citazione", user=session["username"])
+    else:
+        nuovacitazione= Citazioni(request.form['citcontenuto'])
+        db.session.add(nuovacitazione)
+        db.session.commit()
+        return redirect(url_for('page_citazioni_list'))
+
+@app.route('/citazioni_del/<int:citid>')
+def page_citazioni_del(citid):
+    if 'username' not in session:
+        return redirect(url_for('page_dashboard'))
+    citazioni = Citazioni.query.get(citid)
+    db.session.delete(citazioni)
+    db.session.commit()
+    return redirect(url_for('page_citazioni_list'))
+
+@app.route('/citazioni_list')
+def page_citazioni_list():
+    if 'username' not in session:
+        css = url_for("static", filename="style.css")
+        citazioni = Citazioni.query.all()
+        return render_template("Citazioni/list_noob.html.j2", css=css, citazioni=citazioni, type="citazione")
+    citazioni = Citazioni.query.all()
+    css = url_for("static", filename="style.css")
+    return render_template("Citazioni/list.html.j2", css=css, citazioni=citazioni, type="citazione", user=session["username"])
